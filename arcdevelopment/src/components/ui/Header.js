@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -59,10 +61,24 @@ function ElevationScroll(props) {
 function Header() {
   // selected tab
   const [value, setValue] = useState(0);
+  // menu anchor
+  const [anchor, setAnchor] = useState(null);
+  // menu visibility
+  const [open, setOpen] = useState(false);
   // component stylrd
   const classes = useStyles();
+
   // on tab change event hanlder
   const handleChange = (e, val) => setValue(val);
+  // menu click event handler
+  const handleClick = e => {
+    setAnchor(e.currentTarget);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setAnchor(null);
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (window.location.pathname === "/" && value !== 0) {
@@ -112,6 +128,7 @@ function Header() {
                 className={classes.tab}
                 component={Link}
                 to="/services"
+                onMouseOver={e => handleClick(e)}
               />
               <Tab
                 label="The Revolution"
@@ -140,6 +157,17 @@ function Header() {
             >
               Free Estimate
             </Button>
+
+            <Menu
+              anchorEl={anchor}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}
+            >
+              <MenuItem onClick={handleClose}>Custom software</MenuItem>
+              <MenuItem onClick={handleClose}>Mobile app</MenuItem>
+              <MenuItem onClick={handleClose}>Web sites</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
