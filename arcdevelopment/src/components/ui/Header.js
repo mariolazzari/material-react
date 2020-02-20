@@ -41,6 +41,18 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "50px",
     marginLeft: "50px",
     marginRight: "25px"
+  },
+  menu: {
+    color: "white",
+    backgroundColor: theme.palette.common.blue,
+    borderRadius: "0px"
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1
+    }
   }
 }));
 
@@ -163,10 +175,54 @@ function Header() {
               open={open}
               onClose={handleClose}
               MenuListProps={{ onMouseLeave: handleClose }}
+              classes={{ paper: classes.menu }}
+              elevation={0}
             >
-              <MenuItem onClick={handleClose}>Custom software</MenuItem>
-              <MenuItem onClick={handleClose}>Mobile app</MenuItem>
-              <MenuItem onClick={handleClose}>Web sites</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="/services"
+                classes={{ root: classes.menuItem }}
+              >
+                Services
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="/customsoftware"
+                classes={{ root: classes.menuItem }}
+              >
+                Custom software
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="mobileapp"
+                classes={{ root: classes.menuItem }}
+              >
+                Mobile app
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setValue(1);
+                }}
+                component={Link}
+                to="websites"
+                classes={{ root: classes.menuItem }}
+              >
+                Web sites
+              </MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>
