@@ -5,21 +5,33 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
-
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import logo from "../../assets/logo.svg";
 
 // component styles
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "3em"
+    marginBottom: "3em",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "2em"
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "1.25em"
+    }
   },
   logo: {
-    height: "7em"
+    height: "8em",
+    [theme.breakpoints.down("md")]: {
+      height: "7em"
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "5.5em"
+    }
   },
   logoContainer: {
     padding: 0,
@@ -73,6 +85,8 @@ function ElevationScroll(props) {
 function Header() {
   // component styles
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
   // selected tab
   const [value, setValue] = useState(0);
   // menu anchor
@@ -173,6 +187,74 @@ function Header() {
     }
   }, [value]);
 
+  const tabs = (
+    <Fragment>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        className={classes.tabContainer}
+        indicatorColor="primary"
+      >
+        <Tab label="Home" className={classes.tab} component={Link} to="/" />
+        <Tab
+          label="Services"
+          className={classes.tab}
+          component={Link}
+          to="/services"
+          onMouseOver={e => handleClick(e)}
+        />
+        <Tab
+          label="The Revolution"
+          className={classes.tab}
+          component={Link}
+          to="/revoluton"
+        />
+        <Tab
+          label="About Us"
+          className={classes.tab}
+          component={Link}
+          to="/about"
+        />
+        <Tab
+          label="Contact Us"
+          className={classes.tab}
+          component={Link}
+          to="/contact"
+        />
+      </Tabs>
+
+      <Button variant="contained" color="secondary" className={classes.button}>
+        Free Estimate
+      </Button>
+
+      <Menu
+        anchorEl={anchor}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{ onMouseLeave: handleClose }}
+        classes={{ paper: classes.menu }}
+        elevation={0}
+      >
+        {menuOptions.map(({ name, link }, i) => (
+          <MenuItem
+            key={i}
+            onClick={e => {
+              handleMenuItemClick(i);
+              setValue(1);
+              handleClose();
+            }}
+            component={Link}
+            to={link}
+            classes={{ root: classes.menuItem }}
+            selected={i === selectedIndex && value === 1}
+          >
+            {name}
+          </MenuItem>
+        ))}
+      </Menu>
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <ElevationScroll>
@@ -188,78 +270,7 @@ function Header() {
               <img src={logo} alt="Arc Development" className={classes.logo} />
             </Button>
 
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              className={classes.tabContainer}
-              indicatorColor="primary"
-            >
-              <Tab
-                label="Home"
-                className={classes.tab}
-                component={Link}
-                to="/"
-              />
-              <Tab
-                label="Services"
-                className={classes.tab}
-                component={Link}
-                to="/services"
-                onMouseOver={e => handleClick(e)}
-              />
-              <Tab
-                label="The Revolution"
-                className={classes.tab}
-                component={Link}
-                to="/revoluton"
-              />
-              <Tab
-                label="About Us"
-                className={classes.tab}
-                component={Link}
-                to="/about"
-              />
-              <Tab
-                label="Contact Us"
-                className={classes.tab}
-                component={Link}
-                to="/contact"
-              />
-            </Tabs>
-
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-            >
-              Free Estimate
-            </Button>
-
-            <Menu
-              anchorEl={anchor}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{ onMouseLeave: handleClose }}
-              classes={{ paper: classes.menu }}
-              elevation={0}
-            >
-              {menuOptions.map(({ name, link }, i) => (
-                <MenuItem
-                  key={i}
-                  onClick={e => {
-                    handleMenuItemClick(i);
-                    setValue(1);
-                    handleClose();
-                  }}
-                  component={Link}
-                  to={link}
-                  classes={{ root: classes.menuItem }}
-                  selected={i === selectedIndex && value === 1}
-                >
-                  {name}
-                </MenuItem>
-              ))}
-            </Menu>
+            {matches ? null : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
