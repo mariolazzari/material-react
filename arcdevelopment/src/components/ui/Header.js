@@ -10,6 +10,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Drawer from "@material-ui/core/SwipeableDrawer";
+import MenuIcon from "@material-ui/icons/Menu";
+import IconButton from "@material-ui/core/IconButton";
+
 import logo from "../../assets/logo.svg";
 
 // component styles
@@ -65,6 +69,16 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       opacity: 1
     }
+  },
+  drawerIconContainer: {
+    marginLeft: "auto",
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
+  },
+  drawerIcon: {
+    height: "50px",
+    width: "50px"
   }
 }));
 
@@ -92,20 +106,22 @@ function Header() {
   // menu anchor
   const [anchor, setAnchor] = useState(null);
   // menu visibility
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   // selected item index
   const [selectedIndex, setSelectedIndex] = useState(0);
+  // menu drawer visibility
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   // on tab change event hanlder
   const handleChange = (e, val) => setValue(val);
   // menu click event handler
   const handleClick = e => {
     setAnchor(e.currentTarget);
-    setOpen(true);
+    setOpenMenu(true);
   };
   const handleClose = () => {
     setAnchor(null);
-    setOpen(false);
+    setOpenMenu(false);
   };
 
   // menu options
@@ -229,7 +245,7 @@ function Header() {
 
       <Menu
         anchorEl={anchor}
-        open={open}
+        open={openMenu}
         onClose={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
         classes={{ paper: classes.menu }}
@@ -255,6 +271,29 @@ function Header() {
     </Fragment>
   );
 
+  // menu drawer
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const drawer = (
+    <Fragment>
+      <Drawer
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}
+      >
+        drawer test
+      </Drawer>
+      <IconButton
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+        className={classes.drawerIconContainer}
+      >
+        <MenuIcon className={classes.drawerIcon} />
+      </IconButton>
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <ElevationScroll>
@@ -270,7 +309,7 @@ function Header() {
               <img src={logo} alt="Arc Development" className={classes.logo} />
             </Button>
 
-            {matches ? null : tabs}
+            {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
