@@ -13,6 +13,9 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Drawer from "@material-ui/core/SwipeableDrawer";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 import logo from "../../assets/logo.svg";
 
@@ -79,11 +82,21 @@ const useStyles = makeStyles(theme => ({
   drawerIcon: {
     height: "50px",
     width: "50px"
+  },
+  drawer: {
+    backgroundColor: theme.palette.common.blue
+  },
+  drawerItem: {
+    ...theme.typography.tab,
+    color: "white"
+  },
+  drawerItemEstimate: {
+    background: theme.palette.common.orange
   }
 }));
 
 // elevation
-function ElevationScroll(props) {
+const ElevationScroll = props => {
   const { children } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -93,10 +106,10 @@ function ElevationScroll(props) {
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0
   });
-}
+};
 
 // Header component
-function Header() {
+const Header = () => {
   // component styles
   const classes = useStyles();
   const theme = useTheme();
@@ -281,8 +294,21 @@ function Header() {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
       >
-        drawer test
+        <List disablePadding>
+          <ListItem
+            divider
+            button
+            component={Link}
+            to="/"
+            onClick={() => setOpenDrawer(false)}
+          >
+            <ListItemText disableTypography className={classes.drawerItem}>
+              Home
+            </ListItemText>
+          </ListItem>
+        </List>
       </Drawer>
       <IconButton
         onClick={() => setOpenDrawer(!openDrawer)}
@@ -316,6 +342,6 @@ function Header() {
       <div className={classes.toolbarMargin}></div>
     </Fragment>
   );
-}
+};
 
 export default Header;
