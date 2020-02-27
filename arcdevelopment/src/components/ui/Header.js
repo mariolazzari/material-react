@@ -88,10 +88,14 @@ const useStyles = makeStyles(theme => ({
   },
   drawerItem: {
     ...theme.typography.tab,
-    color: "white"
+    color: "white",
+    opacity: 0.7
   },
   drawerItemEstimate: {
     background: theme.palette.common.orange
+  },
+  drawerItemSelected: {
+    opacity: 1
   }
 }));
 
@@ -139,10 +143,29 @@ const Header = () => {
 
   // menu options
   const menuOptions = [
-    { link: "/services", name: "Services" },
-    { link: "/customsoftware", name: "Custom software" },
-    { link: "/mobileapps", name: "Mobile apps" },
-    { link: "/websites", name: "Web sites" }
+    { link: "/services", name: "Services", activeIndex: 1, selectedIndex: 0 },
+    {
+      link: "/customsoftware",
+      name: "Custom software",
+      activeIndex: 1,
+      selectedIndex: 1
+    },
+    {
+      link: "/mobileapps",
+      name: "Mobile apps",
+      activeIndex: 1,
+      selectedIndex: 2
+    },
+    { link: "/websites", name: "Web sites", activeIndex: 1, selectedIndex: 3 }
+  ];
+
+  // routes
+  const routes = [
+    { name: "Home", link: "/", activeIndex: 0 },
+    { name: "Services", link: "/services", activeIndex: 1 },
+    { name: "Revolution", link: "/revolution", activeIndex: 2 },
+    { name: "About us", link: "/about", activeIndex: 3 },
+    { name: "Contact us", link: "/contact", activeIndex: 4 }
   ];
 
   // on menu item click event handler
@@ -152,69 +175,21 @@ const Header = () => {
   };
 
   useEffect(() => {
-    switch (window.location.pathname) {
-      case "/":
-        if (value !== 0) {
-          setValue(0);
-        }
-        break;
-
-      case "/services":
-        if (value !== 1) {
-          setValue(1);
-          setSelectedIndex(0);
-        }
-        break;
-
-      case "/customsoftware":
-        if (value !== 1) {
-          setValue(1);
-          setSelectedIndex(1);
-        }
-        break;
-
-      case "/mobileapps":
-        if (value !== 1) {
-          setValue(1);
-          setSelectedIndex(2);
-        }
-        break;
-
-      case "/websites":
-        if (value !== 1) {
-          setValue(1);
-          setSelectedIndex(3);
-        }
-        break;
-
-      case "/revolution":
-        if (value !== 2) {
-          setValue(2);
-        }
-        break;
-
-      case "/about":
-        if (value !== 3) {
-          setValue(3);
-        }
-        break;
-
-      case "/contact":
-        if (value !== 4) {
-          setValue(4);
-        }
-        break;
-
-      case "/estimate":
-        if (value !== 5) {
-          setValue(5);
-        }
-        break;
-
-      default:
-        break;
-    }
-  }, [value]);
+    [...menuOptions, ...routes].forEach(route => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== route.activeIndex) {
+            setValue(route.activeIndex);
+            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
+              setSelectedIndex(route.selectedIndex);
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, menuOptions, selectedIndex, routes]);
 
   const tabs = (
     <Fragment>
@@ -302,10 +277,132 @@ const Header = () => {
             button
             component={Link}
             to="/"
-            onClick={() => setOpenDrawer(false)}
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(0);
+            }}
+            selected={value === 0}
           >
-            <ListItemText disableTypography className={classes.drawerItem}>
+            <ListItemText
+              disableTypography
+              className={
+                value === 0
+                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  : classes.drawerItem
+              }
+            >
               Home
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            divider
+            button
+            component={Link}
+            to="/services"
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(1);
+            }}
+            selected={value === 1}
+          >
+            <ListItemText
+              disableTypography
+              className={
+                value === 1
+                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  : classes.drawerItem
+              }
+            >
+              Services
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            divider
+            button
+            component={Link}
+            to="/revolution"
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(2);
+            }}
+            selected={value === 2}
+          >
+            <ListItemText
+              disableTypography
+              className={
+                value === 2
+                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  : classes.drawerItem
+              }
+            >
+              The revolution
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            divider
+            button
+            component={Link}
+            to="/about"
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(3);
+            }}
+            selected={value === 3}
+          >
+            <ListItemText
+              disableTypography
+              className={
+                value === 3
+                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  : classes.drawerItem
+              }
+            >
+              About us
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            divider
+            button
+            component={Link}
+            to="/contact"
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(4);
+            }}
+            selected={value === 4}
+          >
+            <ListItemText
+              disableTypography
+              className={
+                value === 4
+                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  : classes.drawerItem
+              }
+            >
+              Contact us
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            divider
+            button
+            component={Link}
+            to="/estimate"
+            onClick={() => {
+              setOpenDrawer(false);
+              setValue(5);
+            }}
+            selected={value === 5}
+            className={classes.drawerItemEstimate}
+          >
+            <ListItemText
+              disableTypography
+              className={
+                value === 5
+                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  : classes.drawerItem
+              }
+            >
+              Free estimate
             </ListItemText>
           </ListItem>
         </List>
