@@ -162,7 +162,12 @@ const Header = () => {
   // routes
   const routes = [
     { name: "Home", link: "/", activeIndex: 0 },
-    { name: "Services", link: "/services", activeIndex: 1 },
+    {
+      name: "Services",
+      link: "/services",
+      activeIndex: 1,
+      onMouseOver: e => handleClick(e)
+    },
     { name: "Revolution", link: "/revolution", activeIndex: 2 },
     { name: "About us", link: "/about", activeIndex: 3 },
     { name: "Contact us", link: "/contact", activeIndex: 4 }
