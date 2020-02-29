@@ -96,6 +96,9 @@ const useStyles = makeStyles(theme => ({
   },
   drawerItemSelected: {
     opacity: 1
+  },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1
   }
 }));
 
@@ -204,32 +207,16 @@ const Header = () => {
         className={classes.tabContainer}
         indicatorColor="primary"
       >
-        <Tab label="Home" className={classes.tab} component={Link} to="/" />
-        <Tab
-          label="Services"
-          className={classes.tab}
-          component={Link}
-          to="/services"
-          onMouseOver={e => handleClick(e)}
-        />
-        <Tab
-          label="The Revolution"
-          className={classes.tab}
-          component={Link}
-          to="/revoluton"
-        />
-        <Tab
-          label="About Us"
-          className={classes.tab}
-          component={Link}
-          to="/about"
-        />
-        <Tab
-          label="Contact Us"
-          className={classes.tab}
-          component={Link}
-          to="/contact"
-        />
+        {routes.map((route, i) => (
+          <Tab
+            key={i}
+            className={classes.tab}
+            component={Link}
+            to={route.link}
+            label={route.name}
+            onMouseOver={route.onMouseOver}
+          ></Tab>
+        ))}
       </Tabs>
 
       <Button variant="contained" color="secondary" className={classes.button}>
@@ -243,6 +230,8 @@ const Header = () => {
         MenuListProps={{ onMouseLeave: handleClose }}
         classes={{ paper: classes.menu }}
         elevation={0}
+        style={{ zIndex: 1302 }}
+        keepMounted
       >
         {menuOptions.map(({ name, link }, i) => (
           <MenuItem
@@ -276,117 +265,30 @@ const Header = () => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
+        <div className={classes.toolbarMargin}></div>
         <List disablePadding>
-          <ListItem
-            divider
-            button
-            component={Link}
-            to="/"
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-            selected={value === 0}
-          >
-            <ListItemText
-              disableTypography
-              className={
-                value === 0
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
+          {routes.map(route => (
+            <ListItem
+              key={route.link}
+              divider
+              button
+              component={Link}
+              to={route.link}
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.activeIndex);
+              }}
+              classes={{ selected: classes.drawerItemSelected }}
+              selected={value === route.activeIndex}
             >
-              Home
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            divider
-            button
-            component={Link}
-            to="/services"
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(1);
-            }}
-            selected={value === 1}
-          >
-            <ListItemText
-              disableTypography
-              className={
-                value === 1
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-            >
-              Services
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            divider
-            button
-            component={Link}
-            to="/revolution"
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(2);
-            }}
-            selected={value === 2}
-          >
-            <ListItemText
-              disableTypography
-              className={
-                value === 2
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-            >
-              The revolution
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            divider
-            button
-            component={Link}
-            to="/about"
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(3);
-            }}
-            selected={value === 3}
-          >
-            <ListItemText
-              disableTypography
-              className={
-                value === 3
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-            >
-              About us
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            divider
-            button
-            component={Link}
-            to="/contact"
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(4);
-            }}
-            selected={value === 4}
-          >
-            <ListItemText
-              disableTypography
-              className={
-                value === 4
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-            >
-              Contact us
-            </ListItemText>
-          </ListItem>
+              <ListItemText
+                //disableTypography
+                className={classes.drawerItem}
+              >
+                {route.name}
+              </ListItemText>
+            </ListItem>
+          ))}
           <ListItem
             divider
             button
@@ -396,16 +298,15 @@ const Header = () => {
               setOpenDrawer(false);
               setValue(5);
             }}
+            classes={{
+              root: classes.drawerItemEstimate,
+              selected: classes.drawerItemSelected
+            }}
             selected={value === 5}
-            className={classes.drawerItemEstimate}
           >
             <ListItemText
-              disableTypography
-              className={
-                value === 5
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
+              //disableTypography
+              className={classes.drawerItem}
             >
               Free estimate
             </ListItemText>
@@ -425,7 +326,7 @@ const Header = () => {
   return (
     <Fragment>
       <ElevationScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.appbar}>
           <Toolbar disableGutters>
             <Button
               component={Link}
