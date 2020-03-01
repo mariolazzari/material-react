@@ -2,7 +2,8 @@ import React from "react";
 import { ThemeProvider } from "@material-ui/core";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./ui/theme";
-import Header from "../components/ui/Header";
+import Header from "./ui/Header";
+import Footer from "./ui/Footer";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/contact" component={() => <div>contact</div>} />
           <Route exact path="/estimate" component={() => <div>estimate</div>} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
