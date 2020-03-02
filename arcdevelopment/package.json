@@ -1,38 +1,29 @@
 {
-  "name": "arcdevelopment",
-  "version": "0.1.0",
+  "name": "nextjs",
+  "version": "4.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.9.4",
+    "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.1",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1",
-    "typeface-roboto": "0.0.75"
+    "axios": "^0.19.2",
+    "clsx": "latest",
+    "fs-extra": "^8.1.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-optipng": "^7.1.0",
+    "lodash": "^4.17.15",
+    "next": "latest",
+    "next-compose-plugins": "^2.2.0",
+    "next-optimized-images": "^2.5.5",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-ga": "^2.7.0",
+    "react-lottie": "^1.2.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "next",
+    "build": "next build",
+    "postbuild": "node scripts/sitemap.js",
+    "start": "next start"
   }
 }
