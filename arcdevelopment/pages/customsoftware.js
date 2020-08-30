@@ -134,7 +134,15 @@ export default function CustomSoftware(props) {
         </Hidden>
         <Grid item container direction="column" className={classes.heading}>
           <Grid item>
-            <Typography align={matchesMD ? "center" : undefined} variant="h1">
+            <Typography
+              gutterBottom={matchesXS}
+              style={{
+                lineHeight: matchesXS ? 1.2 : undefined,
+                fontSize: matchesXS ? "2.25em" : undefined
+              }}
+              align={matchesMD ? "center" : undefined}
+              variant="h1"
+            >
               Custom Software Development
             </Typography>
           </Grid>

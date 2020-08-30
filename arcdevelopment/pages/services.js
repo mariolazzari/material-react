@@ -12,25 +12,28 @@ const customSoftwareIcon = "static/assets/customSoftware.svg";
 const mobileAppsIcon = "static/assets/mobileIcon.svg";
 const websitesIcon = "static/assets/websiteIcon.svg";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   specialText: {
     fontFamily: "Pacifico",
-    color: theme.palette.common.orange
+    color: theme.palette.common.orange,
   },
   subtitle: {
-    marginBottom: "1em"
+    marginBottom: "1em",
   },
   icon: {
     marginLeft: "2em",
     [theme.breakpoints.down("xs")]: {
-      marginLeft: 0
-    }
+      marginLeft: 0,
+    },
   },
   serviceContainer: {
     marginTop: "10em",
     [theme.breakpoints.down("sm")]: {
-      padding: 25
-    }
+      padding: 25,
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: 5,
+    },
   },
   learnButton: {
     ...theme.typography.learnButton,
@@ -38,9 +41,9 @@ const useStyles = makeStyles(theme => ({
     height: 35,
     padding: 5,
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "2em"
-    }
-  }
+      marginBottom: "2em",
+    },
+  },
 }));
 
 export default function Services(props) {
@@ -74,7 +77,7 @@ export default function Services(props) {
         item
         style={{
           marginLeft: matchesSM ? 0 : "5em",
-          marginTop: matchesSM ? "1em" : "2em"
+          marginTop: matchesSM ? "1em" : "2em",
         }}
       >
         <Typography
@@ -99,7 +102,7 @@ export default function Services(props) {
             item
             style={{
               textAlign: matchesSM ? "center" : undefined,
-              width: matchesSM ? undefined : "35em"
+              width: matchesSM ? undefined : "35em",
             }}
           >
             <Typography variant="h4">iOS/Android App Development</Typography>
@@ -151,7 +154,7 @@ export default function Services(props) {
             item
             style={{
               marginLeft: matchesSM ? 0 : "5em",
-              textAlign: matchesSM ? "center" : undefined
+              textAlign: matchesSM ? "center" : undefined,
             }}
           >
             <Typography variant="h4">Custom Software Development</Typography>
@@ -204,7 +207,7 @@ export default function Services(props) {
             item
             style={{
               textAlign: matchesSM ? "center" : undefined,
-              width: matchesSM ? undefined : "35em"
+              width: matchesSM ? undefined : "35em",
             }}
           >
             <Typography variant="h4">Website Development</Typography>

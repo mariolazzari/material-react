@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import App from "next/app";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 import theme from "../src/ui/Theme";
 
 import Header from "../src/ui/Header";
 import Footer from "../src/ui/Footer";
+
+import Fonts from "../src/ui/Fonts";
 
 import ReactGA from "react-ga";
 ReactGA.initialize("UA-145847500-1");
@@ -15,15 +18,16 @@ export default class MyApp extends App {
     this.state = { value: 0, selectedIndex: 0 };
   }
 
-  setValue = index => {
+  setValue = (index) => {
     this.setState({ value: index });
   };
 
-  setSelectedIndex = index => {
+  setSelectedIndex = (index) => {
     this.setState({ selectedIndex: index });
   };
 
   componentDidMount() {
+    Fonts();
     // Check that service workers are supported
     if ("serviceWorker" in navigator) {
       // Use the window load event to keep the page load performant
@@ -55,10 +59,12 @@ export default class MyApp extends App {
             setValue={this.setValue}
             setSelectedIndex={this.setSelectedIndex}
           />
-          <Footer
-            setValue={this.setValue}
-            setSelectedIndex={this.setSelectedIndex}
-          />
+          <LazyLoadComponent>
+            <Footer
+              setValue={this.setValue}
+              setSelectedIndex={this.setSelectedIndex}
+            />
+          </LazyLoadComponent>
         </ThemeProvider>
       </React.Fragment>
     );
