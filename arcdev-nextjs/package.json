@@ -13,6 +13,10 @@
     "fs-extra": "^8.1.0",
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-optipng": "^7.1.0",
+<<<<<<< HEAD:arcdev-nextjs/package.json
+=======
+    "lodash": "^4.17.19",
+>>>>>>> a298e4c10260fb0d1a1e967bca2849ac7e5874dc:arcdevelopment/package.json
     "next": "latest",
     "next-compose-plugins": "^2.2.0",
     "next-optimized-images": "^2.5.4",
