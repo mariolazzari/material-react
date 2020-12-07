@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -20,52 +20,52 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 import logo from "../../assets/logo.svg";
 
-function ElevationScroll(props) {
-  const { children } = props;
-
+// elevation scroll effect
+const ElevationScroll = props => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0
+    threshold: 0,
   });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0
+  return React.cloneElement(props.children, {
+    elevation: trigger ? 4 : 0,
   });
-}
+};
 
+// styles
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: "3em",
     [theme.breakpoints.down("md")]: {
-      marginBottom: "2em"
+      marginBottom: "2em",
     },
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "1.25em"
-    }
+      marginBottom: "1.25em",
+    },
   },
   logo: {
     height: "8em",
     [theme.breakpoints.down("md")]: {
-      height: "7em"
+      height: "7em",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "5.5em"
-    }
+      height: "5.5em",
+    },
   },
   logoContainer: {
     padding: 0,
     "&:hover": {
-      backgroundColor: "transparent"
-    }
+      backgroundColor: "transparent",
+    },
   },
   tabContainer: {
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
-    marginLeft: "25px"
+    marginLeft: "25px",
   },
   button: {
     ...theme.typography.estimate,
@@ -74,53 +74,53 @@ const useStyles = makeStyles(theme => ({
     marginRight: "25px",
     height: "45px",
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light
-    }
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
   menu: {
     backgroundColor: theme.palette.common.blue,
     color: "white",
-    borderRadius: "0px"
+    borderRadius: "0px",
   },
   menuItem: {
     ...theme.typography.tab,
     opacity: 0.7,
     "&:hover": {
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   drawerIcon: {
     height: "50px",
-    width: "50px"
+    width: "50px",
   },
   drawerIconContainer: {
     marginLeft: "auto",
     "&:hover": {
-      backgroundColor: "transparent"
-    }
+      backgroundColor: "transparent",
+    },
   },
   drawer: {
-    backgroundColor: theme.palette.common.blue
+    backgroundColor: theme.palette.common.blue,
   },
   drawerItem: {
     ...theme.typography.tab,
     color: "white",
-    opacity: 0.7
+    opacity: 0.7,
   },
   drawerItemEstimate: {
-    backgroundColor: theme.palette.common.orange
+    backgroundColor: theme.palette.common.orange,
   },
   drawerItemSelected: {
     "& .MuiListItemText-root": {
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   appbar: {
-    zIndex: theme.zIndex.modal + 1
-  }
+    zIndex: theme.zIndex.modal + 1,
+  },
 }));
 
-export default function Header(props) {
+function Header(props) {
   const classes = useStyles();
   const theme = useTheme();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -150,42 +150,48 @@ export default function Header(props) {
     setOpenMenu(false);
   };
 
-  const menuOptions = [
-    { name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0 },
-    {
-      name: "Custom Software Development",
-      link: "/customsoftware",
-      activeIndex: 1,
-      selectedIndex: 1
-    },
-    {
-      name: "iOS/Android App Development",
-      link: "/mobileapps",
-      activeIndex: 1,
-      selectedIndex: 2
-    },
-    {
-      name: "Website Development",
-      link: "/websites",
-      activeIndex: 1,
-      selectedIndex: 3
-    }
-  ];
+  const menuOptions = useMemo(
+    () => [
+      { name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0 },
+      {
+        name: "Custom Software Development",
+        link: "/customsoftware",
+        activeIndex: 1,
+        selectedIndex: 1,
+      },
+      {
+        name: "iOS/Android App Development",
+        link: "/mobileapps",
+        activeIndex: 1,
+        selectedIndex: 2,
+      },
+      {
+        name: "Website Development",
+        link: "/websites",
+        activeIndex: 1,
+        selectedIndex: 3,
+      },
+    ],
+    []
+  );
 
-  const routes = [
-    { name: "Home", link: "/", activeIndex: 0 },
-    {
-      name: "Services",
-      link: "/services",
-      activeIndex: 1,
-      ariaOwns: anchorEl ? "simple-menu" : undefined,
-      ariaPopup: anchorEl ? "true" : undefined,
-      mouseOver: event => handleClick(event)
-    },
-    { name: "The Revolution", link: "/revolution", activeIndex: 2 },
-    { name: "About Us", link: "/about", activeIndex: 3 },
-    { name: "Contact Us", link: "/contact", activeIndex: 4 }
-  ];
+  const routes = useMemo(
+    () => [
+      { name: "Home", link: "/", activeIndex: 0 },
+      {
+        name: "Services",
+        link: "/services",
+        activeIndex: 1,
+        ariaOwns: anchorEl ? "simple-menu" : undefined,
+        ariaPopup: anchorEl ? "true" : undefined,
+        mouseOver: event => handleClick(event),
+      },
+      { name: "The Revolution", link: "/revolution", activeIndex: 2 },
+      { name: "About Us", link: "/about", activeIndex: 3 },
+      { name: "Contact Us", link: "/contact", activeIndex: 4 },
+    ],
+    [anchorEl]
+  );
 
   useEffect(() => {
     [...menuOptions, ...routes].forEach(route => {
@@ -248,7 +254,7 @@ export default function Header(props) {
         onClose={handleClose}
         classes={{ paper: classes.menu }}
         MenuListProps={{
-          onMouseLeave: handleClose
+          onMouseLeave: handleClose,
         }}
         elevation={0}
         style={{ zIndex: 1302 }}
@@ -315,7 +321,7 @@ export default function Header(props) {
             component={Link}
             classes={{
               root: classes.drawerItemEstimate,
-              selected: classes.drawerItemSelected
+              selected: classes.drawerItemSelected,
             }}
             to="/estimate"
             selected={props.value === 5}
@@ -358,3 +364,5 @@ export default function Header(props) {
     </React.Fragment>
   );
 }
+
+export default Header;
