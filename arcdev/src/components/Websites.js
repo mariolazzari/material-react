@@ -6,37 +6,37 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
-
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import analytics from "../assets/analytics.svg";
 import seo from "../assets/seo.svg";
 import outreach from "../assets/outreach.svg";
 import ecommerce from "../assets/ecommerce.svg";
-
 import CallToAction from "./ui/CallToAction";
 
+// styles
 const useStyles = makeStyles(theme => ({
   heading: {
-    maxWidth: "40em"
+    maxWidth: "40em",
   },
   arrowContainer: {
-    marginTop: "0.5em"
+    marginTop: "0.5em",
   },
   rowContainer: {
     paddingLeft: "5em",
     paddingRight: "5em",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: "1.5em",
-      paddingRight: "1.5em"
-    }
+      paddingRight: "1.5em",
+    },
   },
   paragraphContainer: {
-    maxWidth: "30em"
-  }
+    maxWidth: "30em",
+  },
 }));
 
-export default function Websites(props) {
+// component0
+const Websites = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -283,4 +283,6 @@ export default function Websites(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default Websites;
