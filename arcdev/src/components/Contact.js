@@ -11,15 +11,14 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
-
 import ButtonArrow from "./ui/ButtonArrow";
-
 import background from "../assets/background.jpg";
 import mobileBackground from "../assets/mobileBackground.jpg";
 import phoneIcon from "../assets/phone.svg";
 import emailIcon from "../assets/email.svg";
 import airplane from "../assets/send.svg";
 
+// styles
 const useStyles = makeStyles(theme => ({
   background: {
     backgroundImage: `url(${background})`,
@@ -29,8 +28,8 @@ const useStyles = makeStyles(theme => ({
     height: "60em",
     paddingBottom: "10em",
     [theme.breakpoints.down("md")]: {
-      backgroundImage: `url(${mobileBackground})`
-    }
+      backgroundImage: `url(${mobileBackground})`,
+    },
   },
   estimateButton: {
     ...theme.typography.estimate,
@@ -42,12 +41,12 @@ const useStyles = makeStyles(theme => ({
     marginRight: "5em",
     marginLeft: "2em",
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light
+      backgroundColor: theme.palette.secondary.light,
     },
     [theme.breakpoints.down("md")]: {
       marginLeft: 0,
-      marginRight: 0
-    }
+      marginRight: 0,
+    },
   },
   learnButton: {
     ...theme.typography.learnButton,
@@ -55,13 +54,13 @@ const useStyles = makeStyles(theme => ({
     height: 35,
     padding: 5,
     [theme.breakpoints.down("md")]: {
-      marginBottom: "2em"
-    }
+      marginBottom: "2em",
+    },
   },
   message: {
     border: `2px solid ${theme.palette.common.blue}`,
     marginTop: "5em",
-    borderRadius: 5
+    borderRadius: 5,
   },
   sendButton: {
     ...theme.typography.estimate,
@@ -71,16 +70,17 @@ const useStyles = makeStyles(theme => ({
     fontSize: "1rem",
     backgroundColor: theme.palette.common.orange,
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light
+      backgroundColor: theme.palette.secondary.light,
     },
     [theme.breakpoints.down("sm")]: {
       height: 40,
-      width: 225
-    }
-  }
+      width: 225,
+    },
+  },
 }));
 
-export default function Contact(props) {
+// component
+const Contact = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -147,8 +147,8 @@ export default function Contact(props) {
             email: email,
             name: name,
             phone: phone,
-            message: message
-          }
+            message: message,
+          },
         }
       )
       .then(res => {
@@ -186,7 +186,7 @@ export default function Contact(props) {
         alignItems="center"
         style={{
           marginBottom: matchesMD ? "5em" : 0,
-          marginTop: matchesSM ? "1em" : matchesMD ? "5em" : 0
+          marginTop: matchesSM ? "1em" : matchesMD ? "5em" : 0,
         }}
         lg={4}
         xl={3}
@@ -338,8 +338,8 @@ export default function Contact(props) {
               ? 0
               : matchesMD
               ? "15em"
-              : "25em"
-          }
+              : "25em",
+          },
         }}
       >
         <DialogContent>
@@ -431,8 +431,8 @@ export default function Contact(props) {
         open={alert.open}
         ContentProps={{
           style: {
-            backgroundColor: alert.color
-          }
+            backgroundColor: alert.color,
+          },
         }}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         message={alertMessage}
@@ -453,7 +453,7 @@ export default function Contact(props) {
           item
           style={{
             marginLeft: matchesMD ? 0 : "3em",
-            textAlign: matchesMD ? "center" : "inherit"
+            textAlign: matchesMD ? "center" : "inherit",
           }}
         >
           <Grid container direction="column">
@@ -503,4 +503,6 @@ export default function Contact(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default Contact;

@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ButtonArrow from "./ButtonArrow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
 import background from "../../assets/background.jpg";
 import mobileBackground from "../../assets/mobileBackground.jpg";
 
+// styles
 const useStyles = makeStyles(theme => ({
   learnButton: {
     ...theme.typography.learnButton,
@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
     height: 35,
     padding: 5,
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "2em"
-    }
+      marginBottom: "2em",
+    },
   },
   background: {
     backgroundImage: `url(${background})`,
@@ -30,8 +30,8 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     [theme.breakpoints.down("md")]: {
       backgroundImage: `url(${mobileBackground})`,
-      backgroundAttachment: "inherit"
-    }
+      backgroundAttachment: "inherit",
+    },
   },
   estimateButton: {
     ...theme.typography.estimate,
@@ -43,16 +43,17 @@ const useStyles = makeStyles(theme => ({
     marginRight: "5em",
     marginLeft: "2em",
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light
+      backgroundColor: theme.palette.secondary.light,
     },
     [theme.breakpoints.down("sm")]: {
       marginLeft: 0,
-      marginRight: 0
-    }
-  }
+      marginRight: 0,
+    },
+  },
 }));
 
-export default function CallToAction(props) {
+// component
+const CallToAction = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -69,7 +70,7 @@ export default function CallToAction(props) {
         item
         style={{
           marginLeft: matchesSM ? 0 : "5em",
-          textAlign: matchesSM ? "center" : "inherit"
+          textAlign: matchesSM ? "center" : "inherit",
         }}
       >
         <Grid container direction="column">
@@ -114,4 +115,6 @@ export default function CallToAction(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default CallToAction;

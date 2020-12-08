@@ -14,7 +14,8 @@ import About from "./About";
 import Contact from "./Contact";
 import Estimate from "./Estimate";
 
-function App() {
+// component
+const App = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [value, setValue] = useState(0);
 
@@ -132,6 +133,6 @@ function App() {
       </BrowserRouter>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

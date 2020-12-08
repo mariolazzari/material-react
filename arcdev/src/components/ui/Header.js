@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { Fragment, useState, useEffect, useMemo } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -17,7 +17,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-
 import logo from "../../assets/logo.svg";
 
 // elevation scroll effect
@@ -120,7 +119,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Header(props) {
+// component
+const Header = props => {
   const classes = useStyles();
   const theme = useTheme();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -343,7 +343,7 @@ function Header(props) {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <ElevationScroll>
         <AppBar position="fixed" className={classes.appbar}>
           <Toolbar disableGutters>
@@ -361,8 +361,8 @@ function Header(props) {
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolbarMargin} />
-    </React.Fragment>
+    </Fragment>
   );
-}
+};
 
 export default Header;

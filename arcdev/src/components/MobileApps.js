@@ -7,35 +7,34 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
-
 import forwardArrow from "../assets/forwardArrow.svg";
 import backArrow from "../assets/backArrow.svg";
 import swiss from "../assets/swissKnife.svg";
 import access from "../assets/extendAccess.svg";
 import engagement from "../assets/increaseEngagement.svg";
-
 import integrationAnimation from "../animations/integrationAnimation/data.json";
-
 import CallToAction from "./ui/CallToAction";
 
+// styles
 const useStyles = makeStyles(theme => ({
   heading: {
-    maxWidth: "40em"
+    maxWidth: "40em",
   },
   arrowContainer: {
-    marginTop: "0.5em"
+    marginTop: "0.5em",
   },
   rowContainer: {
     paddingLeft: "5em",
     paddingRight: "5em",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: "1.5em",
-      paddingRight: "1.5em"
-    }
-  }
+      paddingRight: "1.5em",
+    },
+  },
 }));
 
-export default function MobileApps(props) {
+// component
+const MobileApps = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -47,8 +46,8 @@ export default function MobileApps(props) {
     autoplay: false,
     animationData: integrationAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   return (
@@ -229,7 +228,7 @@ export default function MobileApps(props) {
           md
           style={{
             marginTop: matchesMD ? "10em" : 0,
-            marginBottom: matchesMD ? "10em" : 0
+            marginBottom: matchesMD ? "10em" : 0,
           }}
         >
           <Grid item>
@@ -261,4 +260,6 @@ export default function MobileApps(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default MobileApps;

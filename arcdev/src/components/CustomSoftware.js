@@ -7,42 +7,41 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
-
 import backArrow from "../assets/backArrow.svg";
 import forwardArrow from "../assets/forwardArrow.svg";
 import lightbulb from "../assets/bulb.svg";
 import cash from "../assets/cash.svg";
 import stopwatch from "../assets/stopwatch.svg";
 import roots from "../assets/root.svg";
-
 import documentsAnimation from "../animations/documentsAnimation/data";
 import scaleAnimation from "../animations/scaleAnimation/data.json";
 import automationAnimation from "../animations/automationAnimation/data.json";
 import uxAnimation from "../animations/uxAnimation/data";
-
 import CallToAction from "./ui/CallToAction";
 
+// styles
 const useStyles = makeStyles(theme => ({
   heading: {
-    maxWidth: "40em"
+    maxWidth: "40em",
   },
   arrowContainer: {
-    marginTop: "0.5em"
+    marginTop: "0.5em",
   },
   rowContainer: {
     paddingLeft: "5em",
     paddingRight: "5em",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: "1.5em",
-      paddingRight: "1.5em"
-    }
+      paddingRight: "1.5em",
+    },
   },
   itemContainer: {
-    maxWidth: "40em"
-  }
+    maxWidth: "40em",
+  },
 }));
 
-export default function CustomSoftware(props) {
+// component
+const CustomSoftware = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -54,8 +53,8 @@ export default function CustomSoftware(props) {
     autoplay: false,
     animationData: documentsAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   const scaleOptions = {
@@ -63,8 +62,8 @@ export default function CustomSoftware(props) {
     autoplay: false,
     animationData: scaleAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   const automationOptions = {
@@ -72,8 +71,8 @@ export default function CustomSoftware(props) {
     autoplay: false,
     animationData: automationAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   const uxOptions = {
@@ -81,8 +80,8 @@ export default function CustomSoftware(props) {
     autoplay: false,
     animationData: uxAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   return (
@@ -205,7 +204,7 @@ export default function CustomSoftware(props) {
           style={{
             maxWidth: "40em",
             marginTop: matchesSM ? "10em" : 0,
-            marginBottom: matchesSM ? "10em" : 0
+            marginBottom: matchesSM ? "10em" : 0,
           }}
         >
           <Grid item>
@@ -465,4 +464,6 @@ export default function CustomSoftware(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default CustomSoftware;
