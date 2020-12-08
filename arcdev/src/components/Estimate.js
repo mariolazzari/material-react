@@ -3,7 +3,6 @@ import axios from "axios";
 import Lottie from "react-lottie";
 import { cloneDeep } from "lodash";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -15,7 +14,6 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
 import Snackbar from "@material-ui/core/Snackbar";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
 import check from "../assets/check.svg";
 import send from "../assets/send.svg";
 import software from "../assets/software.svg";
@@ -42,10 +40,11 @@ import globe from "../assets/globe.svg";
 import biometrics from "../assets/biometrics.svg";
 import estimateAnimation from "../animations/estimateAnimation/data.json";
 
+// styles
 const useStyles = makeStyles(theme => ({
   icon: {
     width: "12em",
-    height: "10em"
+    height: "10em",
   },
   estimateButton: {
     ...theme.typography.estimate,
@@ -56,21 +55,21 @@ const useStyles = makeStyles(theme => ({
     marginTop: "5em",
     fontSize: "1.25rem",
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light
-    }
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
   message: {
     border: `2px solid ${theme.palette.common.blue}`,
     marginTop: "3em",
     marginBottom: "2em",
-    borderRadius: 5
+    borderRadius: 5,
   },
   specialText: {
     fontFamily: "Raleway",
     fontWeight: 700,
     fontSize: "2rem",
-    color: theme.palette.common.orange
-  }
+    color: theme.palette.common.orange,
+  },
 }));
 
 const defaultQuestions = [
@@ -86,7 +85,7 @@ const defaultQuestions = [
         icon: software,
         iconAlt: "three floating screens",
         selected: false,
-        cost: 0
+        cost: 0,
       },
       {
         id: 2,
@@ -95,7 +94,7 @@ const defaultQuestions = [
         icon: mobile,
         iconAlt: "outlines of phones and tablets",
         selected: false,
-        cost: 0
+        cost: 0,
       },
       {
         id: 3,
@@ -104,10 +103,10 @@ const defaultQuestions = [
         icon: website,
         iconAlt: "computer outline",
         selected: false,
-        cost: 0
-      }
-    ]
-  }
+        cost: 0,
+      },
+    ],
+  },
 ];
 
 const softwareQuestions = [
@@ -123,7 +122,7 @@ const softwareQuestions = [
         icon: software,
         iconAlt: "three floating screens",
         selected: false,
-        cost: 0
+        cost: 0,
       },
       {
         id: 2,
@@ -132,7 +131,7 @@ const softwareQuestions = [
         icon: mobile,
         iconAlt: "outlines of phones and tablets",
         selected: false,
-        cost: 0
+        cost: 0,
       },
       {
         id: 3,
@@ -141,9 +140,9 @@ const softwareQuestions = [
         icon: website,
         iconAlt: "computer outline",
         selected: false,
-        cost: 0
-      }
-    ]
+        cost: 0,
+      },
+    ],
   },
   {
     id: 2,
@@ -157,7 +156,7 @@ const softwareQuestions = [
         icon: website,
         iconAlt: "computer outline",
         selected: false,
-        cost: 1000
+        cost: 1000,
       },
       {
         id: 2,
@@ -166,7 +165,7 @@ const softwareQuestions = [
         icon: iPhone,
         iconAlt: "outline of iphone",
         selected: false,
-        cost: 1000
+        cost: 1000,
       },
       {
         id: 3,
@@ -175,10 +174,10 @@ const softwareQuestions = [
         icon: android,
         iconAlt: "outlines of android phone",
         selected: false,
-        cost: 1000
-      }
+        cost: 1000,
+      },
     ],
-    active: true
+    active: true,
   },
   {
     id: 3,
@@ -192,7 +191,7 @@ const softwareQuestions = [
         icon: camera,
         iconAlt: "camera outline",
         selected: false,
-        cost: 250
+        cost: 250,
       },
       {
         id: 2,
@@ -201,7 +200,7 @@ const softwareQuestions = [
         icon: gps,
         iconAlt: "gps pin",
         selected: false,
-        cost: 250
+        cost: 250,
       },
       {
         id: 3,
@@ -210,10 +209,10 @@ const softwareQuestions = [
         icon: upload,
         iconAlt: "outline of cloud with arrow pointing up",
         selected: false,
-        cost: 250
-      }
+        cost: 250,
+      },
     ],
-    active: false
+    active: false,
   },
   {
     id: 4,
@@ -227,7 +226,7 @@ const softwareQuestions = [
         icon: usersIcon,
         iconAlt: "outline of a person with a plus sign",
         selected: false,
-        cost: 250
+        cost: 250,
       },
       {
         id: 2,
@@ -236,7 +235,7 @@ const softwareQuestions = [
         icon: biometrics,
         iconAlt: "fingerprint",
         selected: false,
-        cost: 250
+        cost: 250,
       },
       {
         id: 3,
@@ -245,10 +244,10 @@ const softwareQuestions = [
         icon: bell,
         iconAlt: "outline of a bell",
         selected: false,
-        cost: 250
-      }
+        cost: 250,
+      },
     ],
-    active: false
+    active: false,
   },
   {
     id: 5,
@@ -262,7 +261,7 @@ const softwareQuestions = [
         icon: info,
         iconAlt: "'i' inside a circle",
         selected: false,
-        cost: 250
+        cost: 250,
       },
       {
         id: 2,
@@ -271,7 +270,7 @@ const softwareQuestions = [
         icon: customized,
         iconAlt: "two toggle switches",
         selected: false,
-        cost: 500
+        cost: 500,
       },
       {
         id: 3,
@@ -280,10 +279,10 @@ const softwareQuestions = [
         icon: data,
         iconAlt: "outline of line graph",
         selected: false,
-        cost: 1000
-      }
+        cost: 1000,
+      },
     ],
-    active: false
+    active: false,
   },
   {
     id: 6,
@@ -297,7 +296,7 @@ const softwareQuestions = [
         icon: person,
         iconAlt: "person outline",
         selected: false,
-        cost: 1
+        cost: 1,
       },
       {
         id: 2,
@@ -306,7 +305,7 @@ const softwareQuestions = [
         icon: persons,
         iconAlt: "outline of two people",
         selected: false,
-        cost: 1.125
+        cost: 1.125,
       },
       {
         id: 3,
@@ -315,11 +314,11 @@ const softwareQuestions = [
         icon: people,
         iconAlt: "outline of three people",
         selected: false,
-        cost: 1.25
-      }
+        cost: 1.25,
+      },
     ],
-    active: false
-  }
+    active: false,
+  },
 ];
 
 const websiteQuestions = [
@@ -335,7 +334,7 @@ const websiteQuestions = [
         icon: software,
         iconAlt: "three floating screens",
         selected: false,
-        cost: 0
+        cost: 0,
       },
       {
         id: 2,
@@ -344,7 +343,7 @@ const websiteQuestions = [
         icon: mobile,
         iconAlt: "outlines of phones and tablets",
         selected: false,
-        cost: 0
+        cost: 0,
       },
       {
         id: 3,
@@ -353,9 +352,9 @@ const websiteQuestions = [
         icon: website,
         iconAlt: "computer outline",
         selected: false,
-        cost: 0
-      }
-    ]
+        cost: 0,
+      },
+    ],
   },
   {
     id: 2,
@@ -369,7 +368,7 @@ const websiteQuestions = [
         icon: info,
         iconAlt: "person outline",
         selected: false,
-        cost: 1000
+        cost: 1000,
       },
       {
         id: 2,
@@ -378,7 +377,7 @@ const websiteQuestions = [
         icon: customized,
         iconAlt: "outline of two people",
         selected: false,
-        cost: 2000
+        cost: 2000,
       },
       {
         id: 3,
@@ -387,14 +386,14 @@ const websiteQuestions = [
         icon: globe,
         iconAlt: "outline of three people",
         selected: false,
-        cost: 2500
-      }
+        cost: 2500,
+      },
     ],
-    active: true
-  }
+    active: true,
+  },
 ];
 
-export default function Estimate() {
+const Estimate = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -431,8 +430,8 @@ export default function Estimate() {
     autoplay: false,
     animationData: estimateAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   const nextQuestion = () => {
@@ -706,8 +705,8 @@ export default function Estimate() {
             platforms: platforms,
             features: features,
             customFeatures: customFeatures,
-            users: users
-          }
+            users: users,
+          },
         }
       )
       .then(res => {
@@ -861,7 +860,7 @@ export default function Estimate() {
           style={{
             marginRight: matchesMD ? 0 : "10em",
             maxWidth: "50em",
-            marginTop: "7.5em"
+            marginTop: "7.5em",
           }}
         >
           <Lottie
@@ -894,7 +893,7 @@ export default function Estimate() {
                     marginTop: "5em",
                     lineHeight: 1.25,
                     marginLeft: matchesSM ? "1em" : 0,
-                    marginRight: matchesSM ? "1em" : 0
+                    marginRight: matchesSM ? "1em" : 0,
                   }}
                 >
                   {question.title}
@@ -922,7 +921,7 @@ export default function Estimate() {
                       marginBottom: matchesSM ? "1.5em" : 0,
                       backgroundColor: option.selected
                         ? theme.palette.common.orange
-                        : undefined
+                        : undefined,
                     }}
                     direction="column"
                     alignItems="center"
@@ -934,7 +933,7 @@ export default function Estimate() {
                         variant="h6"
                         style={{
                           lineHeight: 1,
-                          marginBottom: "1em"
+                          marginBottom: "1em",
                         }}
                       >
                         {option.title}
@@ -1160,8 +1159,8 @@ export default function Estimate() {
         open={alert.open}
         ContentProps={{
           style: {
-            backgroundColor: alert.color
-          }
+            backgroundColor: alert.color,
+          },
         }}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         message={alertMessage}
@@ -1170,4 +1169,6 @@ export default function Estimate() {
       />
     </Grid>
   );
-}
+};
+
+export default Estimate;

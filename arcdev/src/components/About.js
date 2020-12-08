@@ -5,29 +5,28 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Hidden from "@material-ui/core/Hidden";
-
 import history from "../assets/history.svg";
 import profile from "../assets/founder.jpg";
 import yearbook from "../assets/yearbook.svg";
 import puppy from "../assets/puppy.svg";
-
 import CallToAction from "./ui/CallToAction";
 
+// styles
 const useStyles = makeStyles(theme => ({
   missionStatement: {
     fontStyle: "italic",
     fontWeight: 300,
     fontSize: "1.5rem",
     maxWidth: "50em",
-    lineHeight: 1.4
+    lineHeight: 1.4,
   },
   rowContainer: {
     paddingLeft: "5em",
     paddingRight: "5em",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: "1.5em",
-      paddingRight: "1.5em"
-    }
+      paddingRight: "1.5em",
+    },
   },
   avatar: {
     height: "25em",
@@ -36,12 +35,13 @@ const useStyles = makeStyles(theme => ({
       height: "20em",
       width: "20em",
       maxHeight: 300,
-      maxWidth: 300
-    }
-  }
+      maxWidth: 300,
+    },
+  },
 }));
 
-export default function About(props) {
+// component
+const About = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -264,4 +264,6 @@ export default function About(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default About;

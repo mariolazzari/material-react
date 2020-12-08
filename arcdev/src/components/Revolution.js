@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
 import vision from "../assets/vision.svg";
 import consultation from "../assets/consultationIcon.svg";
 import mockup from "../assets/mockupIcon.svg";
@@ -15,21 +14,22 @@ import launch from "../assets/launchIcon.svg";
 import maintain from "../assets/maintainIcon.svg";
 import iterate from "../assets/iterateIcon.svg";
 import technologyAnimation from "../animations/technologyAnimation/data.json";
-
 import CallToAction from "./ui/CallToAction";
 
+// styles
 const useStyles = makeStyles(theme => ({
   rowContainer: {
     paddingLeft: "5em",
     paddingRight: "5em",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: "1.5em",
-      paddingRight: "1.5em"
-    }
-  }
+      paddingRight: "1.5em",
+    },
+  },
 }));
 
-export default function Revolution(props) {
+// component
+const Revolution = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -40,8 +40,8 @@ export default function Revolution(props) {
     autoplay: false,
     animationData: technologyAnimation,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   return (
@@ -74,7 +74,7 @@ export default function Revolution(props) {
             style={{
               maxWidth: matchesSM ? 300 : "40em",
               marginRight: matchesMD ? 0 : "5em",
-              marginBottom: matchesMD ? "5em" : 0
+              marginBottom: matchesMD ? "5em" : 0,
             }}
           />
         </Grid>
@@ -855,4 +855,6 @@ export default function Revolution(props) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default Revolution;
