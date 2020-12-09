@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -170,10 +170,10 @@ const Contact = props => {
   };
 
   const buttonContents = (
-    <React.Fragment>
+    <Fragment>
       Send Message
       <img src={airplane} alt="paper airplane" style={{ marginLeft: "1em" }} />
-    </React.Fragment>
+    </Fragment>
   );
 
   return (
