@@ -10,12 +10,12 @@ let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: config.user.email,
-    pass: config.user.password
-  }
+    pass: config.user.password,
+  },
 });
 
 let mailOptions = {
-  from: `Arc Development`
+  from: `Arc Development`,
 };
 
 exports.sendMail = functions.https.onRequest((req, res) => {
@@ -31,7 +31,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
       features,
       customFeatures,
       users,
-      category
+      category,
     } = req.query;
 
     if (total) {
@@ -48,7 +48,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
             <p style="font-size: 16px;">Total: ${total}</p>
             <p style="font-size: 16px;">Service: ${service}</p>
             <p style="font-size: 16px;">Category: ${category}</p>
-            `
+            `,
         };
 
         transporter.sendMail(mailOptions, error => {
@@ -74,7 +74,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
             <p style="font-size: 16px;">Features: ${features}</p>
             <p style="font-size: 16px;">customFeatures: ${customFeatures}</p>
             <p style="font-size: 16px;">Users: ${users}</p>
-            `
+            `,
         };
 
         transporter.sendMail(mailOptions, error => {
@@ -644,7 +644,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
   </body>
   </html>
 
-          `
+          `,
       };
 
       transporter.sendMail(mailOptions);
@@ -658,7 +658,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
           <p style="font-size: 16px;">Email: ${email}</p>
           <p style="font-size: 16px;">Phone Number: ${phone}</p>
           <p style="font-size: 16px;">Message: ${message}</p>
-          `
+          `,
       };
 
       transporter.sendMail(mailOptions, error => {
@@ -1228,7 +1228,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
   </body>
   </html>
 
-          `
+          `,
       };
 
       transporter.sendMail(mailOptions);
