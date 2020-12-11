@@ -8,25 +8,25 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     marginBottom: "3em",
     [theme.breakpoints.down("md")]: {
-      marginBottom: "2em"
+      marginBottom: "2em",
     },
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "1.25em"
-    }
+      marginBottom: "1.25em",
+    },
   },
   logo: {
     height: "8em",
     textTransform: "none",
     [theme.breakpoints.down("md")]: {
-      height: "7em"
+      height: "7em",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "5.5em"
-    }
+      height: "5.5em",
+    },
   },
   appbar: {
-    zIndex: theme.zIndex.modal + 1
-  }
+    zIndex: theme.zIndex.modal + 1,
+  },
 }));
 
 export default function Header(props) {

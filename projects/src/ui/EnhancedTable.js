@@ -16,8 +16,6 @@ import Paper from "@material-ui/core/Paper";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -63,7 +61,7 @@ const headCells = [
   { id: "complexity", label: "Complexity" },
   { id: "platforms", label: "Platforms" },
   { id: "users", label: "Users" },
-  { id: "total", label: "Total" }
+  { id: "total", label: "Total" },
 ];
 
 function EnhancedTableHead(props) {
@@ -74,7 +72,7 @@ function EnhancedTableHead(props) {
     orderBy,
     numSelected,
     rowCount,
-    onRequestSort
+    onRequestSort,
   } = props;
   const createSortHandler = property => event => {
     onRequestSort(event, property);
@@ -124,43 +122,43 @@ EnhancedTableHead.propTypes = {
   onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired
+  rowCount: PropTypes.number.isRequired,
 };
 
 const useToolbarStyles = makeStyles(theme => ({
   root: {
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1)
+    paddingRight: theme.spacing(1),
   },
   highlight:
     theme.palette.type === "light"
       ? {
           color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
         }
       : {
           color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark
+          backgroundColor: theme.palette.secondary.dark,
         },
   title: {
-    flex: "1 1 100%"
+    flex: "1 1 100%",
   },
   menu: {
     "&:hover": {
-      backgroundColor: "#fff"
+      backgroundColor: "#fff",
     },
     "&.Mui-focusVisible": {
-      backgroundColor: "#fff"
-    }
+      backgroundColor: "#fff",
+    },
   },
   totalFilter: {
     fontSize: "2rem",
-    color: theme.palette.common.orange
+    color: theme.palette.common.orange,
   },
   dollarSign: {
     fontSize: "1.5rem",
-    color: theme.palette.common.orange
-  }
+    color: theme.palette.common.orange,
+  },
 }));
 
 const EnhancedTableToolbar = props => {
@@ -173,7 +171,7 @@ const EnhancedTableToolbar = props => {
   const [alert, setAlert] = React.useState({
     open: false,
     color: "#FF3232",
-    message: "Row deleted!"
+    message: "Row deleted!",
   });
 
   const handleClick = e => {
@@ -249,7 +247,7 @@ const EnhancedTableToolbar = props => {
   return (
     <Toolbar
       className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0
+        [classes.highlight]: numSelected > 0,
       })}
     >
       {numSelected > 0 ? (
@@ -287,8 +285,8 @@ const EnhancedTableToolbar = props => {
         open={alert.open}
         ContentProps={{
           style: {
-            backgroundColor: alert.color
-          }
+            backgroundColor: alert.color,
+          },
         }}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         message={alert.message}
@@ -352,7 +350,7 @@ const EnhancedTableToolbar = props => {
                     {props.totalFilter}
                   </span>
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </MenuItem>
@@ -362,19 +360,19 @@ const EnhancedTableToolbar = props => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired
+  numSelected: PropTypes.number.isRequired,
 };
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: "100%",
   },
   paper: {
     width: "100%",
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 750
+    minWidth: 750,
   },
   visuallyHidden: {
     border: 0,
@@ -385,13 +383,13 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     position: "absolute",
     top: 20,
-    width: 1
+    width: 1,
   },
   chip: {
     marginRight: "2em",
     backgroundColor: theme.palette.common.blue,
-    color: "#fff"
-  }
+    color: "#fff",
+  },
 }));
 
 export default function EnhancedTable(props) {
@@ -454,7 +452,7 @@ export default function EnhancedTable(props) {
       websiteChecked,
       iOSChecked,
       androidChecked,
-      softwareChecked
+      softwareChecked,
     } = props;
 
     const websites = props.rows.filter(row =>

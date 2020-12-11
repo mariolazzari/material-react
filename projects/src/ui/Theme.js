@@ -8,14 +8,14 @@ export default createMuiTheme({
   palette: {
     common: {
       blue: arcBlue,
-      orange: arcOrange
+      orange: arcOrange,
     },
     primary: {
-      main: arcBlue
+      main: arcBlue,
     },
     secondary: {
-      main: arcOrange
-    }
+      main: arcOrange,
+    },
   },
   typography: {
     tab: {
@@ -23,56 +23,56 @@ export default createMuiTheme({
       textTransform: "none",
       fontWeight: 700,
       color: "white",
-      fontSize: "1rem"
+      fontSize: "1rem",
     },
     estimate: {
       fontFamily: "Pacifico",
       fontSize: "1rem",
       textTransform: "none",
-      color: "white"
+      color: "white",
     },
     h1: {
       fontFamily: "Raleway",
       fontWeight: 700,
       fontSize: "2.5rem",
       color: arcBlue,
-      lineHeight: 1.5
+      lineHeight: 1.5,
     },
     h3: {
       fontFamily: "Pacifico",
       fontSize: "2.5rem",
-      color: arcBlue
+      color: arcBlue,
     },
     h4: {
       fontFamily: "Raleway",
       fontSize: "1.75rem",
       color: arcBlue,
-      fontWeight: 700
+      fontWeight: 700,
     },
     h6: {
       fontWeight: 500,
       fontFamily: "Raleway",
-      color: arcBlue
+      color: arcBlue,
     },
     subtitle1: {
       fontSize: "1.25rem",
       fontWeight: 300,
-      color: arcGrey
+      color: arcGrey,
     },
     subtitle2: {
       color: "white",
       fontWeight: 300,
-      fontSize: "1.25rem"
+      fontSize: "1.25rem",
     },
     body1: {
       fontSize: "1.25rem",
       color: arcGrey,
-      fontWeight: 300
+      fontWeight: 300,
     },
     caption: {
       fontSize: "1rem",
       fontWeight: 300,
-      color: arcGrey
+      color: arcGrey,
     },
     learnButton: {
       borderColor: arcBlue,
@@ -81,8 +81,8 @@ export default createMuiTheme({
       color: arcBlue,
       borderRadius: 50,
       fontFamily: "Roboto",
-      fontWeight: "bold"
-    }
+      fontWeight: "bold",
+    },
   },
   overrides: {
     MuiTableCell: {
@@ -91,62 +91,62 @@ export default createMuiTheme({
         fontWeight: 700,
         color: arcBlue,
         borderColor: arcBlue,
-        borderWidth: 2
+        borderWidth: 2,
       },
       body: {
         color: arcGrey,
         borderColor: arcBlue,
-        borderWidth: 2
-      }
+        borderWidth: 2,
+      },
     },
     MuiTableSortLabel: {
       root: {
         "&:hover": {
-          color: arcOrange
+          color: arcOrange,
         },
         "&.MuiTableSortLabel-active": {
-          color: arcOrange
-        }
+          color: arcOrange,
+        },
       },
       icon: {
-        fill: arcOrange
-      }
+        fill: arcOrange,
+      },
     },
     MuiSvgIcon: {
       root: {
         "&.MuiSelect-icon": {
-          fill: arcOrange
-        }
-      }
+          fill: arcOrange,
+        },
+      },
     },
     MuiFormControlLabel: {
       label: {
         color: arcBlue,
-        fontWeight: 700
+        fontWeight: 700,
       },
       labelPlacementStart: {
-        marginLeft: 0
-      }
+        marginLeft: 0,
+      },
     },
     MuiInputLabel: {
       root: {
         color: arcBlue,
-        fontSize: "1rem"
-      }
+        fontSize: "1rem",
+      },
     },
     MuiInput: {
       root: {
         color: arcGrey,
-        fontWeight: 300
+        fontWeight: 300,
       },
       underline: {
         "&:before": {
-          borderBottom: `2px solid ${arcBlue}`
+          borderBottom: `2px solid ${arcBlue}`,
         },
         "&:hover:not($disabled):not($focused):not($error):before": {
-          borderBottom: `2px solid ${arcBlue}`
-        }
-      }
-    }
-  }
+          borderBottom: `2px solid ${arcBlue}`,
+        },
+      },
+    },
+  },
 });
